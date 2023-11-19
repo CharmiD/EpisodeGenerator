@@ -2,19 +2,19 @@ import "./Header.css";
 
 function Header() {
   return (
-    <div class="header-container">
-      <div class="header-title">WHAT TO WATCH?</div>
-      <div class="links-group">
-        <div class="link active">
+    <div className="header-container">
+      <div className="header-title">WHAT TO WATCH?</div>
+      <div className="links-group">
+        <div className="link active">
           <p>Generate Episode</p>
         </div>
-        <div class="link">
+        <div className="link">
           <p>Generate Show</p>
         </div>
-        <div class="link">
+        <div className="link">
           <p>Popular Shows</p>
         </div>
-        <div class="link">
+        <div className="link">
           <p>Similar Shows</p>
         </div>
       </div>

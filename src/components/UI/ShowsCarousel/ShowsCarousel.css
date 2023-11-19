@@ -1,0 +1,52 @@
+.carousel-container {
+    width: 100%;
+    height: 80%;
+
+    .MuiButtonBase-root {
+        margin-left: 30px;
+        margin-right: 30px;
+
+        background-color: transparent;
+
+        .MuiSvgIcon-root {
+            color: #8E6EB5;
+        }
+    }
+
+    .shows-page {
+        width: fit-content;
+        margin: auto;
+    }
+
+    .shows-group {
+        display: flex;
+    }
+
+    .show-poster-container img {
+        height: 200px;
+        width: 150px
+    }
+
+    .show-poster-container {
+        margin: 25px;
+        cursor: pointer;
+
+        .show-poster-name {
+            color: #FFF;
+            text-align: center;
+            font-family: Helvetica;
+            font-size: 14px;
+            font-weight: 400;
+            margin-top: 5px;
+        }
+
+        .show-poster-year {
+            color: #FFF;
+            text-align: center;
+            font-family: Helvetica;
+            font-size: 14px;
+            font-weight: 400;
+            margin-top: 5px;
+        }
+    }
+}

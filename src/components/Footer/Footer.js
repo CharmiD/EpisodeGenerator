@@ -2,8 +2,8 @@ import "./Footer.css";
 
 function Footer() {
   return (
-    <div class="footer-container ">
-      <div class="footer-text">Copyright ©</div>
+    <div className="footer-container ">
+      <div className="footer-text">Copyright ©</div>
     </div>
   );
 }
