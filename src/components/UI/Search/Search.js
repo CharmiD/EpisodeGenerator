@@ -13,7 +13,11 @@ function Search(props) {
 
   return (
     <div className="search">
-      <input placeholder="Search" onChange={handleChange}></input>
+      <input
+        className="search-input"
+        placeholder="Search..."
+        onChange={handleChange}
+      ></input>
     </div>
   );
 }
