@@ -2,23 +2,18 @@ import { useState } from "react";
 
 import "./Search.css";
 
-import SearchBar from "material-ui-search-bar";
-
 function Search(props) {
   const [search, setSearch] = useState("");
 
   const handleChange = (event) => {
-    setSearch(event)
-    props.handleSearchChange(event);
+    console.log(event.target.value);
+    setSearch(event.target.value);
+    props.handleSearchChange(event.target.value);
   };
-
 
   return (
     <div className="search">
-      <SearchBar
-        value={search}
-        onChange={handleChange}
-      />
+      <input placeholder="Search" onChange={handleChange}></input>
     </div>
   );
 }
