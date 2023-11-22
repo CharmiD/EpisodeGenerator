@@ -1,15 +1,16 @@
-import React from "react";
 import Carousel from "react-material-ui-carousel";
 
 import "./ShowsCarousel.css";
-import SHOW_DATA from "../../../MockData";
 
 function ShowsCarousel(props) {
+
+  var showsData = props.shows
+
   //Split shows into groups of 5
   var showDataGrouped = [];
   const chunkSize = 5;
-  for (let i = 0; i < SHOW_DATA.length; i += chunkSize) {
-    const chunk = SHOW_DATA.slice(i, i + chunkSize);
+  for (let i = 0; i < showsData.length; i += chunkSize) {
+    const chunk = showsData.slice(i, i + chunkSize);
     showDataGrouped.push(chunk);
   }
 

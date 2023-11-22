@@ -1,0 +1,27 @@
+.search {
+    .MuiPaper-root {
+        width: 200px;
+        height: 30px;
+        border-radius: 5px;
+        border: 2px solid #2F243A;
+        background: rgba(239, 206, 250, 0.10);
+    }
+
+    .MuiInputBase-root {
+        color: #EFCEFA;
+        font-family: Helvetica;
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    .MuiInputBase-root input {
+        color: #EFCEFA !important;
+        font-family: Helvetica;
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    .MuiButtonBase-root {
+        color: #8E6EB5
+    }
+}
