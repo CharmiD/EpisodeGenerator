@@ -5,6 +5,7 @@ import "./Sort.css";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import SortIcon from "../Icons/SortIcon";
 
 function Sort(props) {
   const [sort, setSort] = useState(1);
@@ -21,6 +22,7 @@ function Sort(props) {
           value={sort}
           onChange={handleChange}
           label="Age"
+          IconComponent={SortIcon}
         >
           <MenuItem value={1}>Name (A - Z)</MenuItem>
           <MenuItem value={2}>Name (Z - A)</MenuItem>

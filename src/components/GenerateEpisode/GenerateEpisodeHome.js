@@ -11,54 +11,71 @@ function GenerateEpisodeHome() {
   const [showsData, setShowsData] = useState(
     SHOW_DATA.sort((a, b) => a.showName.localeCompare(b.showName))
   );
+  const [sortSelected, setSortSelected] = useState(1);
 
   //filter data according to search input
   const handleSearchChange = (searchValue) => {
-    const filtered = [...SHOW_DATA].filter((x) =>
+    var filtered = [...SHOW_DATA].filter((x) =>
       x.showName.toLowerCase().includes(searchValue.toLowerCase())
     );
+
+    //sort the filtered data
+    if (sortSelected === 1) {
+      filtered = sortAlphabetically(filtered);
+    } else if (sortSelected === 2) {
+      filtered = sortNonAlphabetically(filtered);
+    } else if (sortSelected === 3) {
+      filtered = sortYearIncreasing(filtered);
+    } else if (sortSelected === 4) {
+      filtered = sortYearDecreasing(filtered);
+    }
     setShowsData([...filtered]);
   };
 
   //sort data according to sort option selected
   const handleSortChange = (sortValue) => {
+    setSortSelected(sortValue);
+
+    var sorted = [];
     if (sortValue === 1) {
-      sortAlphabetically();
+      sorted = sortAlphabetically(showsData);
     } else if (sortValue === 2) {
-      sortNonAlphabetically();
+      sorted = sortNonAlphabetically(showsData);
     } else if (sortValue === 3) {
-      sortYearIncreasing();
+      sorted = sortYearIncreasing(showsData);
     } else if (sortValue === 4) {
-      sortYearDecreasing();
+      sorted = sortYearDecreasing(showsData);
     }
+    setShowsData([...sorted]);
   };
 
   //function to sort data name alphabetically
-  const sortAlphabetically = () => {
-    const sorted = [...showsData].sort((a, b) =>
+  const sortAlphabetically = (data) => {
+    const sorted = [...data].sort((a, b) =>
       a.showName > b.showName ? 1 : -1
     );
-    setShowsData([...sorted]);
+    return(sorted)
+    //setShowsData([...sorted]);
   };
 
   //function to sort data name non alphabetically
-  const sortNonAlphabetically = () => {
-    const sorted = [...showsData].sort((a, b) =>
+  const sortNonAlphabetically = (data) => {
+    const sorted = [...data].sort((a, b) =>
       a.showName < b.showName ? 1 : -1
     );
-    setShowsData([...sorted]);
+    return(sorted)
   };
 
   //function to sort data increasingly by year
-  const sortYearIncreasing = () => {
-    const sorted = [...showsData].sort((a, b) => a.showYear - b.showYear);
-    setShowsData([...sorted]);
+  const sortYearIncreasing = (data) => {
+    const sorted = [...data].sort((a, b) => a.showYear - b.showYear);
+    return(sorted)
   };
 
   //function to sort data decreasingly by year
-  const sortYearDecreasing = () => {
-    const sorted = [...showsData].sort((a, b) => b.showYear - a.showYear);
-    setShowsData([...sorted]);
+  const sortYearDecreasing = (data) => {
+    const sorted = [...data].sort((a, b) => b.showYear - a.showYear);
+    return(sorted)
   };
 
   return (

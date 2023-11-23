@@ -16,9 +16,8 @@
         text-align: left;
         padding-left: 10px;
     }
-
-    .MuiSvgIcon-root {
-        color: #8E6EB5;
+    .MuiInputBase-root svg{
+        margin-right: 10px;
     }
 
     .css-m5hdmq-MuiInputBase-root-MuiInput-root-MuiSelect-root:after {
