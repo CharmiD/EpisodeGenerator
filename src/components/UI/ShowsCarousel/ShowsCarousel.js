@@ -1,10 +1,12 @@
-import Carousel from "react-material-ui-carousel";
+import { useNavigate } from "react-router-dom";
 
 import "./ShowsCarousel.css";
 
-function ShowsCarousel(props) {
+import Carousel from "react-material-ui-carousel";
 
-  var showsData = props.shows
+function ShowsCarousel(props) {
+  const navigate = useNavigate();
+  var showsData = props.shows;
 
   //Split shows into groups of 5
   var showDataGrouped = [];
@@ -22,6 +24,10 @@ function ShowsCarousel(props) {
     showDataPages.push(chunk);
   }
 
+  const showClicked = (showId) => {
+    navigate('/show/' + showId);
+  };
+
   return (
     <Carousel
       className="carousel-container"
@@ -30,10 +36,14 @@ function ShowsCarousel(props) {
       indicators={false}
     >
       {showDataPages.map((page, i) => (
-        <div className="shows-page">
+        <div key={1} className="shows-page">
           <div className="shows-group">
             {page[0].map((show, i) => (
-              <div className="show-poster-container">
+              <div
+                key={show.showId}
+                className="show-poster-container"
+                onClick={() => showClicked(show.slug)}
+              >
                 <img src={show.showImg}></img>
                 <div className="show-poster-name">{show.showName}</div>
                 <div className="show-poster-year">{show.showYear}</div>
@@ -41,9 +51,13 @@ function ShowsCarousel(props) {
             ))}
           </div>
           {page[1] ? (
-            <div className="shows-group">
+            <div key={2} className="shows-group">
               {page[1].map((show, i) => (
-                <div className="show-poster-container">
+                <div
+                  key={show.showId}
+                  className="show-poster-container"
+                  onClick={() => showClicked(show.slug)}
+                >
                   <img src={show.showImg}></img>
                   <div className="show-poster-name">{show.showName}</div>
                   <div className="show-poster-year">{show.showYear}</div>

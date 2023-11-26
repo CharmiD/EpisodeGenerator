@@ -24,15 +24,20 @@
 
         .link {
             margin-bottom: 2px;
+        }
+
+        .link a {
+            display: block;
             font-family: Helvetica;
             font-size: 16px;
             font-weight: 400;
             color: #0D090A;
             width: 140px;
-            cursor: pointer;
+            text-decoration: none;
+            padding: 17px 0px;
         }
 
-        .link.active, .link:hover {
+        .active, .link a:hover {
             border-bottom: solid 5px #2F243A;
         }
     }

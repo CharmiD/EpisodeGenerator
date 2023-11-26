@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 import "./Header.css";
 
 function Header() {
@@ -5,17 +7,17 @@ function Header() {
     <div className="header-container">
       <div className="header-title">WHAT TO WATCH?</div>
       <div className="links-group">
-        <div className="link active">
-          <p>Generate Episode</p>
+        <div className="link">
+          <NavLink to="/">Generate Episode</NavLink>
         </div>
         <div className="link">
-          <p>Generate Show</p>
+          <NavLink to="/generate-show">Generate Show</NavLink>
         </div>
         <div className="link">
-          <p>Popular Shows</p>
+          <NavLink to="/popular-shows">Popular Shows</NavLink>
         </div>
         <div className="link">
-          <p>Similar Shows</p>
+          <NavLink to="/similar-shows">Similar Shows</NavLink>
         </div>
       </div>
     </div>
