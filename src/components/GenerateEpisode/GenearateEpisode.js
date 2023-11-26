@@ -11,7 +11,6 @@ function GenerateEpisode() {
 
   const currentShow =  useParams().slug;
   const currentShowData = SHOW_DATA.filter((show) => show.slug === currentShow)[0];
-  console.log(currentShowData);
 
   const [seasonsSelected, setSeasonsSelected] = useState(Array(currentShowData.showSeasonsNum).fill(1));
   const [allSelected, setAllSelected] = useState(true);
@@ -40,6 +39,11 @@ function GenerateEpisode() {
   const handleBackClicked = () => {
     navigate("/");
   };
+
+  // When Generate Episode button is clicked
+  const handleGenerateEpisode = () => {
+    navigate('/episode-generated/' + currentShowData.slug);
+  }
 
   return (
     <div className="generate-episode-container">
@@ -85,7 +89,7 @@ function GenerateEpisode() {
         </div>
       </div>
       <div className="generate-button-container">
-        <button className="generate-button">Generate Episode</button>
+        <button className="generate-button" onClick={handleGenerateEpisode}>Generate Episode</button>
       </div>
     </div>
   );

@@ -24,8 +24,8 @@ function ShowsCarousel(props) {
     showDataPages.push(chunk);
   }
 
-  const showClicked = (showId) => {
-    navigate('/show/' + showId);
+  const showClicked = (slug) => {
+    navigate('/show/' + slug);
   };
 
   return (
