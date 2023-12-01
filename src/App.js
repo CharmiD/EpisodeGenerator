@@ -23,8 +23,8 @@ function App() {
           <Route path="/popular-shows" element={<PopularShowsHome />} />
           <Route path="/similar-shows" element={<SimilarShowsHome />} />
 
-          <Route path="/show/:slug" element={<GenerateEpisode />} />
-          <Route path="/episode-generated/:slug" element={<EpisodeGenerated />} />
+          <Route path="/show/:show" element={<GenerateEpisode />} />
+          <Route path="/episode-generated/:show/:season" element={<EpisodeGenerated />} />
        </Routes>
       <Footer />
     </div>

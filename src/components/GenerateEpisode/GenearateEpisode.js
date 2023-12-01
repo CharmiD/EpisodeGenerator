@@ -9,7 +9,7 @@ import BackIcon from "../UI/Icons/BackIcon";
 function GenerateEpisode() {
   const navigate = useNavigate();
 
-  const currentShow =  useParams().slug;
+  const currentShow =  useParams().show;
   const currentShowData = SHOW_DATA.filter((show) => show.slug === currentShow)[0];
 
   const [seasonsSelected, setSeasonsSelected] = useState(Array(currentShowData.showSeasonsNum).fill(1));
@@ -17,7 +17,6 @@ function GenerateEpisode() {
 
   // Assign which seasons are selected
   const handleSeasonChange = (value) => {
-    console.log(value);
     var currentSeasons = [...seasonsSelected];
 
     if (value === "All") {
@@ -42,7 +41,11 @@ function GenerateEpisode() {
 
   // When Generate Episode button is clicked
   const handleGenerateEpisode = () => {
-    navigate('/episode-generated/' + currentShowData.slug);
+    if (allSelected){
+      navigate('/episode-generated/' + currentShowData.slug + "/all");
+    } else { 
+      navigate('/episode-generated/' + currentShowData.slug + "/" + (seasonsSelected.indexOf(1) + 1));
+    }
   }
 
   return (

@@ -1,13 +1,56 @@
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import "./EpisodeGenerated.css";
 
 import BackIcon from "../UI/Icons/BackIcon";
+import SHOW_DATA from "../../MockData";
 
 function EpisodeGenerated() {
   const navigate = useNavigate();
+  const [randomEpisode, setRandomEpisode] = useState({
+    episodeSeason: null,
+    episodeNum: null,
+    episodeName: null,
+    episodeDate: null,
+    episodeRanking: null,
+    episodeDescription: null,
+  });
 
-  const currentShow = useParams().slug;
+  // get the selected show and season
+  const currentShow = useParams().show;
+  const selectedSeason = useParams().season;
+
+  // get data for selected show
+  const currentShowData = SHOW_DATA.filter(
+    (show) => show.slug === currentShow
+  )[0];
+  const currentShowEpisodes = currentShowData.episodes;
+
+  // set initial random episode
+  useEffect(() => {
+    generateRandomEpisode();
+  }, []);
+
+  // generate random episode based on season selected
+  const generateRandomEpisode = () => {
+    if (selectedSeason === "all") {
+      setRandomEpisode(
+        currentShowEpisodes[
+          Math.floor(Math.random() * currentShowEpisodes.length)
+        ]
+      );
+    } else {
+      const filteredEpisodeData = currentShowEpisodes.filter(
+        (episode) => episode.episodeSeason === Number(selectedSeason)
+      );
+      setRandomEpisode(
+        filteredEpisodeData[
+          Math.floor(Math.random() * filteredEpisodeData.length)
+        ]
+      );
+    }
+  };
 
   // When back button is clicked
   const handleBackClicked = () => {
@@ -16,8 +59,8 @@ function EpisodeGenerated() {
 
   // When Generate Episode button is clicked
   const handleGenerateAgain = () => {
-    console.log("Generate Again")
-  }
+    generateRandomEpisode();
+  };
 
   return (
     <div className="episode-generated-container">
@@ -25,18 +68,21 @@ function EpisodeGenerated() {
         <BackIcon />
       </div>
       <div className="episode-title">
-        <span>S3:E2 - Caballo sin Nombre</span>
+        <span>
+          S{randomEpisode.episodeSeason}:E{randomEpisode.episodeNum} -{" "}
+          {randomEpisode.episodeName}
+        </span>
       </div>
-      <div className="show-title">Breaking Bad</div>
-      <div className="episode-date">January 1, 2010</div>
-      <div className="episode-ranking">8.3</div>
+      <div className="show-title">{currentShowData.showName}</div>
+      <div className="episode-date">{randomEpisode.episodeDate}</div>
+      <div className="episode-ranking">{randomEpisode.episodeRanking}/10</div>
       <div className="episode-description">
-        Walter, Jr. is having a rough time accepting his parents' separation.
-        Jesse buys his old house from his parents. Meanwhile, two mysterious men
-        have come into town looking for Walt.
+        {randomEpisode.episodeDescription}
       </div>
       <div className="generate-again-container">
-        <button className="generate-again-button" onClick={handleGenerateAgain}>Generate Again</button>
+        <button className="generate-again-button" onClick={handleGenerateAgain}>
+          Generate Again
+        </button>
       </div>
     </div>
   );
