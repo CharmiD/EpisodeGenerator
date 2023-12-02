@@ -15,7 +15,7 @@ function GenerateEpisode() {
   const [seasonsSelected, setSeasonsSelected] = useState(Array(currentShowData.showSeasonsNum).fill(1));
   const [allSelected, setAllSelected] = useState(true);
 
-  // Assign which seasons are selected
+  // Assign which seasons is selected
   const handleSeasonChange = (value) => {
     var currentSeasons = [...seasonsSelected];
 
@@ -29,7 +29,7 @@ function GenerateEpisode() {
       currentSeasons = currentSeasons.map((x) => {
         return 0;
       });
-      currentSeasons[value - 1] = 1;
+      currentSeasons[value] = 1;
     }
     setSeasonsSelected([...currentSeasons]);
   };
@@ -77,15 +77,15 @@ function GenerateEpisode() {
             >
               All
             </button>
-            {seasonsSelected.map((seasonSelected, i) => (
+            {seasonsSelected.map((seasonSelected, index) => (
               <button
-                key={i}
+                key={index}
                 className={`seasons-button ${
                   seasonSelected && !allSelected ? "active" : ""
                 }`}
-                onClick={() => handleSeasonChange(i + 1)}
+                onClick={() => handleSeasonChange(index)}
               >
-                {i + 1}
+                {index + 1}
               </button>
             ))}
           </div>
