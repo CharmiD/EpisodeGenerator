@@ -11,6 +11,7 @@ import PopularShowsHome from './components/PopularShows/PopularShowsHome';
 import SimilarShowsHome from './components/SimilarShows/SimilarShowsHome';
 import GenerateEpisode from './components/GenerateEpisode/GenearateEpisode';
 import EpisodeGenerated from './components/GenerateEpisode/EpisodeGenerated';
+import SimilarShowsGenerated from './components/SimilarShows/SimilarShowsGenerated';
 
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
 
           <Route path="/show/:show" element={<GenerateEpisode />} />
           <Route path="/episode-generated/:show/:season" element={<EpisodeGenerated />} />
+          <Route path="/similar-shows/:show" element={<SimilarShowsGenerated />} />
+
        </Routes>
       <Footer />
     </div>

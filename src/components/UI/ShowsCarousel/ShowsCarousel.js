@@ -25,7 +25,11 @@ function ShowsCarousel(props) {
   }
 
   const showClicked = (slug) => {
-    navigate('/show/' + slug);
+    if (props.type === "show"){
+      navigate('/show/' + slug);
+    } else if (props.type === "similar"){
+      navigate('/similar-shows/' + slug);
+    }
   };
 
   return (

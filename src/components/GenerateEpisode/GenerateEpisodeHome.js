@@ -84,7 +84,7 @@ function GenerateEpisodeHome() {
         <Sort handleSortChange={handleSortChange} />
         <Search handleSearchChange={handleSearchChange} />
       </div>
-      <ShowsCarousel shows={showsData} />
+      <ShowsCarousel shows={showsData} type="show"/>
     </div>
   );
 }
