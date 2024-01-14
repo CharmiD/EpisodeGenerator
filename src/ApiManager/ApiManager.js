@@ -12,8 +12,8 @@ const options = {
   };
 
 class ApiManager {
-    static getDefaultShows = (page) => {
-        const url = BASE_URL + ENDPOINTS.GET_DEFAULT_SHOWS(page);
+    static getPopularShows = (page) => {
+        const url = BASE_URL + ENDPOINTS.GET_POPULAR_SHOWS(page);
         return fetch(url, options);
     };
 

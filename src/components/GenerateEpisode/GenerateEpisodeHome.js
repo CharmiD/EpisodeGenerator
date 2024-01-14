@@ -82,7 +82,7 @@ function GenerateEpisodeHome() {
 
   //default api call for first 10 pages of US shows
   const fetchDefaultShows = () => {
-    ApiManager.getDefaultShows(page)
+    ApiManager.getPopularShows(page)
       .then((response) => response.json())
       .then((response) => {
         setShowsData((prev) => [...prev, ...response.results]);

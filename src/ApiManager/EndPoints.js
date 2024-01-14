@@ -1,5 +1,5 @@
 const ENDPOINTS = {
-  GET_DEFAULT_SHOWS: (page) => 
+  GET_POPULAR_SHOWS: (page) => 
   `tv/popular?language=en-US&page=${page}`,
 
   GET_SEARCHED_SHOWS: (searchValue) =>
