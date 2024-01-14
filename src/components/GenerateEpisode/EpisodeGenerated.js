@@ -1,89 +1,84 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import "./EpisodeGenerated.css";
 
-import BackIcon from "../UI/Icons/BackIcon";
-import SHOW_DATA from "../../MockData";
+import ApiManager from "../../ApiManager/ApiManager";
 
 function EpisodeGenerated() {
-  const navigate = useNavigate();
-  const [randomEpisode, setRandomEpisode] = useState({
-    episodeSeason: null,
-    episodeNum: null,
-    episodeName: null,
-    episodeDate: null,
-    episodeRanking: null,
-    episodeDescription: null,
-  });
+  const [randomEpisode, setRandomEpisode] = useState();
+  const [currentShowData, setCurrentShowData] = useState();
 
   // get the selected show and season
-  const currentShow = useParams().show;
+  const currentShowId = useParams().show;
   const selectedSeason = useParams().season;
-
-  // get data for selected show
-  const currentShowData = SHOW_DATA.filter(
-    (show) => show.slug === currentShow
-  )[0];
-  const currentShowEpisodes = currentShowData.episodes;
 
   // set initial random episode
   useEffect(() => {
-    generateRandomEpisode();
+    ApiManager.getShowDetails(currentShowId)
+      .then((response) => response.json())
+      .then((response) => {
+        setCurrentShowData(response);
+        console.log(response);
+        generateRandomEpisode(response.seasons);
+      })
+      .catch((err) => console.error(err));
   }, []);
 
   // generate random episode based on season selected
-  const generateRandomEpisode = () => {
+  const generateRandomEpisode = (seasonsData) => {
+    var seasonNum;
+    var episodeNum;
     if (selectedSeason === "all") {
-      setRandomEpisode(
-        currentShowEpisodes[
-          Math.floor(Math.random() * currentShowEpisodes.length)
-        ]
-      );
+      seasonNum = Math.floor(Math.random() * seasonsData.length - 1) + 1;
+      episodeNum =
+        Math.floor(Math.random() * seasonsData[seasonNum].episode_count) + 1;
     } else {
-      const filteredEpisodeData = currentShowEpisodes.filter(
-        (episode) => episode.episodeSeason === Number(selectedSeason)
-      );
-      setRandomEpisode(
-        filteredEpisodeData[
-          Math.floor(Math.random() * filteredEpisodeData.length)
-        ]
-      );
+      seasonNum = Number(selectedSeason);
+      episodeNum =
+        Math.floor(Math.random() * seasonsData[seasonNum].episode_count) + 1;
     }
-  };
-
-  // When back button is clicked
-  const handleBackClicked = () => {
-    navigate("/show/" + currentShow);
+    ApiManager.getEpisodeDetails(currentShowId, seasonNum, episodeNum)
+      .then((response) => response.json())
+      .then((response) => {
+        setRandomEpisode(response);
+      })
+      .catch((err) => console.error(err));
   };
 
   // When Generate Episode button is clicked
   const handleGenerateAgain = () => {
-    generateRandomEpisode();
+    generateRandomEpisode(currentShowData.seasons);
   };
 
   return (
     <div className="episode-generated-container">
-      <div className="back-icon" onClick={handleBackClicked}>
-        <BackIcon />
-      </div>
-      <div className="episode-title">
-        <span>
-          S{randomEpisode.episodeSeason}:E{randomEpisode.episodeNum} -{" "}
-          {randomEpisode.episodeName}
-        </span>
-      </div>
-      <div className="show-title">{currentShowData.showName}</div>
-      <div className="episode-date">{randomEpisode.episodeDate}</div>
-      <div className="episode-ranking">{randomEpisode.episodeRanking}/10</div>
-      <div className="episode-description">
-        {randomEpisode.episodeDescription}
-      </div>
-      <div className="generate-again-container">
-        <button className="generate-again-button" onClick={handleGenerateAgain}>
-          Generate Again
-        </button>
-      </div>
+      {randomEpisode ? (
+        <div>
+          <div className="episode-title">
+            <span>
+              S{randomEpisode.season_number}:E{randomEpisode.episode_number} -{" "}
+              {randomEpisode.name}
+            </span>
+          </div>
+          <div className="show-title">{currentShowData.name}</div>
+          <div className="episode-date">{randomEpisode.air_date}</div>
+          <div className="episode-ranking">
+            {randomEpisode.vote_average}/10
+          </div>
+          <div className="episode-description">
+            {randomEpisode.overview}
+          </div>
+          <div className="generate-again-container">
+            <button
+              className="generate-again-button"
+              onClick={handleGenerateAgain}
+            >
+              Generate Again
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

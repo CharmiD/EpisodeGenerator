@@ -25,10 +25,10 @@ function ShowsCarousel(props) {
   }
 
   const showClicked = (slug) => {
-    if (props.type === "show"){
-      navigate('/show/' + slug);
-    } else if (props.type === "similar"){
-      navigate('/similar-shows/' + slug);
+    if (props.type === "show") {
+      navigate("/show/" + slug);
+    } else if (props.type === "similar") {
+      navigate("/similar-shows/" + slug);
     }
   };
 
@@ -44,13 +44,18 @@ function ShowsCarousel(props) {
           <div className="shows-group">
             {page[0].map((show, i) => (
               <div
-                key={show.showId}
+                key={show.id}
                 className="show-poster-container"
-                onClick={() => showClicked(show.slug)}
+                onClick={() => showClicked(show.id)}
               >
-                <img src={show.showImg}></img>
-                <div className="show-poster-name">{show.showName}</div>
-                <div className="show-poster-year">{show.showYear}</div>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
+                  alt={show.name}
+                ></img>
+                <div className="show-poster-name">{show.name}</div>
+                <div className="show-poster-year">
+                  {show.first_air_date.split("-")[0]}
+                </div>
               </div>
             ))}
           </div>
@@ -58,13 +63,18 @@ function ShowsCarousel(props) {
             <div key={2} className="shows-group">
               {page[1].map((show, i) => (
                 <div
-                  key={show.showId}
+                  key={show.id}
                   className="show-poster-container"
-                  onClick={() => showClicked(show.slug)}
+                  onClick={() => showClicked(show.id)}
                 >
-                  <img src={show.showImg}></img>
-                  <div className="show-poster-name">{show.showName}</div>
-                  <div className="show-poster-year">{show.showYear}</div>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
+                    alt={show.name}
+                  ></img>
+                  <div className="show-poster-name">{show.name}</div>
+                  <div className="show-poster-year">
+                    {show.first_air_date.split("-")[0]}
+                  </div>
                 </div>
               ))}
             </div>

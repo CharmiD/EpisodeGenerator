@@ -10,13 +10,17 @@ function Search(props) {
 
   const handleChange = (event) => {
     setSearch(event.target.value);
-    props.handleSearchChange(event.target.value);
+    //props.handleSearchChange(event.target.value);
+  };
+
+  const handleEnterPressed = () => {
+    props.handleSearchChange(search);
   };
 
   const handleCancel = (event) => {
     setSearch("");
     props.handleSearchChange("");
-  }
+  };
 
   return (
     <div className="search">
@@ -25,9 +29,14 @@ function Search(props) {
         className="search-input"
         placeholder="Search..."
         onChange={handleChange}
+        onKeyDown={(event) => {
+          if (event.key === "Enter") {
+            handleEnterPressed();
+          }
+        }}
       ></input>
       <div className="search-icon" onClick={handleCancel}>
-        {(search === "" ? <SearchIcon /> : <CrossIcon/>)}
+        {search === "" ? <SearchIcon /> : <CrossIcon />}
       </div>
     </div>
   );

@@ -1,17 +1,16 @@
 import { Routes, Route } from 'react-router-dom';
 
 import "./App.css";
-import "./components/Header/Header";
+import "./Components/Header/Header";
 
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import GenerateEpisodeHome from "./components/GenerateEpisode/GenerateEpisodeHome";
-import GenerateShowHome from "./components/GenerateShow/GenerateShowHome";
-import PopularShowsHome from './components/PopularShows/PopularShowsHome';
-import SimilarShowsHome from './components/SimilarShows/SimilarShowsHome';
-import GenerateEpisode from './components/GenerateEpisode/GenearateEpisode';
-import EpisodeGenerated from './components/GenerateEpisode/EpisodeGenerated';
-import SimilarShowsGenerated from './components/SimilarShows/SimilarShowsGenerated';
+import Header from "./Components/Header/Header";
+import Footer from "./Components/Footer/Footer";
+import GenerateEpisodeHome from "./Components/GenerateEpisode/GenerateEpisodeHome";
+import GenerateShowHome from "./Components/GenerateShow/GenerateShowHome";
+import SimilarShowsHome from './Components/SimilarShows/SimilarShowsHome';
+import GenerateEpisode from './Components/GenerateEpisode/GenerateEpisode';
+import EpisodeGenerated from './Components/GenerateEpisode/EpisodeGenerated';
+import SimilarShowsGenerated from './Components/SimilarShows/SimilarShowsGenerated';
 
 
 function App() {
@@ -21,7 +20,6 @@ function App() {
       <Routes>
           <Route path="/" element={<GenerateEpisodeHome />} />
           <Route path="/generate-show" element={<GenerateShowHome />} />
-          <Route path="/popular-shows" element={<PopularShowsHome />} />
           <Route path="/similar-shows" element={<SimilarShowsHome />} />
 
           <Route path="/show/:show" element={<GenerateEpisode />} />

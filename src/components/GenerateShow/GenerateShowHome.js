@@ -1,47 +1,65 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 import "./GenerateShowHome.css";
-import GENRES_DATA from "../../data/Genres";
-import SHOW_DATA from "../../MockData";
+
+import ApiManager from "../../ApiManager/ApiManager";
 
 function GenerateShowHome() {
   const navigate = useNavigate();
-  const [genres, setGenres] = useState(GENRES_DATA);
+  const [genres, setGenres] = useState([]);
+
+  // api call to get genres available
+  useEffect(() => {
+    ApiManager.getGenres()
+      .then((response) => response.json())
+      .then((response) => {
+        const genresData = response.genres.map((x) => ({
+          id: x.id,
+          name: x.name,
+          selected: 0,
+        }));
+        setGenres([...genresData]);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   // Assign which genre is selected
-  const handleGenreChange = (value) => {
+  const handleGenreChange = (index) => {
     var currentGenres = [...genres];
 
-    currentGenres = currentGenres.map((x) => {
-      return {
-        ...x,
-        selected: 0,
-      };
-    });
-    currentGenres[value].selected = 1;
-
+    if (currentGenres[index].selected === 1) {
+      currentGenres[index].selected = 0;
+    } else {
+      currentGenres[index].selected = 1;
+    }
     setGenres([...currentGenres]);
   };
 
   // Handle generate show button click
   const handleGenerateShow = () => {
-    const selectedGenre =
-      genres[genres.findIndex((x) => x.selected === 1)].name;
-    const show = GenerateShow(selectedGenre);
-    navigate("/show/" + show.slug);
+    var selectedGenres = "";
+    var generatedShows = [];
+    for (let i = 0; i < genres.length; i++) {
+      if (genres[i].selected === 1) {
+        selectedGenres += genres[i].id + ",";
+      }
+    }
+    ApiManager.getShowsByGenres(selectedGenres)
+      .then((response) => response.json())
+      .then((response) => {
+        generatedShows = response.results;
+        const show =
+          generatedShows.length === 1
+            ? generatedShows[0]
+            : generatedShows[
+                Math.floor(Math.random() * generatedShows.length - 1)
+              ];
+        navigate("/show/" + show.id);
+      })
+      .catch((err) => console.error(err));
   };
-
-  // Generate random show based on genre selected
-  const GenerateShow = (selectedGenre) => {
-    const shows = SHOW_DATA.filter((show) =>
-      show.showGenre.includes(selectedGenre)
-    );
-    const randomShow = shows[Math.floor(Math.random() * shows.length)];
-    return randomShow;
-  };
-
   return (
     <div className="generate-show-home-container">
       <Grid
@@ -51,9 +69,9 @@ function GenerateShowHome() {
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
         {genres.map((genre, index) => (
-          <Grid item xs={2} sm={4} md={4} key={index}>
+          <Grid item xs={2} sm={4} md={4} key={genre.id}>
             <button
-              key={index}
+              key={genre.id}
               className={`genre-button ${genre.selected === 1 ? "active" : ""}`}
               onClick={() => handleGenreChange(index)}
             >

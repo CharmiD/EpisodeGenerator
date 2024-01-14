@@ -3,29 +3,39 @@ import { useParams } from "react-router-dom";
 
 import "./SimilarShowsGenerated.css";
 
-import SHOW_DATA from "../../MockData";
 import ShowsCarousel from "../UI/ShowsCarousel/ShowsCarousel";
+import ApiManager from "../../ApiManager/ApiManager";
 
 function SimilarShowsGenerated() {
-  const [similarShows, setSimilarShows] = useState(SHOW_DATA);
-
-  const currentShow = useParams().show;
-  const currentShowData = SHOW_DATA.filter(
-    (show) => show.slug === currentShow
-  )[0];
+  const currentShowId = useParams().show;
+  const [currentShowData, setCurrentShowData] = useState();
+  const [similarShows, setSimilarShows] = useState([]);
 
   // set similar shows
   useEffect(() => {
-    const similarShowsFiltered = SHOW_DATA.filter(
-      (show) => show.showGenre === currentShowData.showGenre
-    );
-    setSimilarShows([...similarShowsFiltered]);
-  }, []);
+    ApiManager.getSimilarShows(currentShowId)
+      .then((response) => response.json())
+      .then((response) => {
+        setSimilarShows(response.results);
+      })
+      .catch((err) => console.error(err));
+
+      ApiManager.getShowDetails(currentShowId)
+      .then((response) => response.json())
+      .then((response) => {
+        setCurrentShowData(response)
+      })
+      .catch((err) => console.error(err));
+  }, [])
 
   return (
     <div className="similar-shows-generated-container">
       <div className="label">Similar Shows To...</div>
-      <div className="show-name">{currentShowData.showName}</div>
+      {currentShowData ? (
+        <div className="show-name">{currentShowData.name}</div>
+      ) : (
+        <>/</>
+      )}
       <ShowsCarousel shows={similarShows} />
     </div>
   );

@@ -14,9 +14,6 @@ function Header() {
           <NavLink to="/generate-show">Generate Show</NavLink>
         </div>
         <div className="link">
-          <NavLink to="/popular-shows">Popular Shows</NavLink>
-        </div>
-        <div className="link">
           <NavLink to="/similar-shows">Similar Shows</NavLink>
         </div>
       </div>

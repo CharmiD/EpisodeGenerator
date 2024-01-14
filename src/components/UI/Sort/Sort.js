@@ -8,7 +8,7 @@ import Select from "@mui/material/Select";
 import SortIcon from "../Icons/SortIcon";
 
 function Sort(props) {
-  const [sort, setSort] = useState(1);
+  const [sort, setSort] = useState(4);
 
   const handleChange = (event) => {
     setSort(event.target.value)
