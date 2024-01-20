@@ -2,13 +2,20 @@ import { NavLink } from "react-router-dom";
 
 import "./Header.css";
 
+import Logo from "../../Assets/Logo";
+
 function Header() {
   return (
     <div className="header-container">
-      <div className="header-title">WHAT TO WATCH?</div>
+      <div className="header-logo">
+        <Logo></Logo>
+      </div>
       <div className="links-group">
         <div className="link">
-          <NavLink to="/">Generate Episode</NavLink>
+          <NavLink to="/">Home</NavLink>
+        </div>
+        <div className="link">
+          <NavLink to="/popular">Popular</NavLink>
         </div>
         <div className="link">
           <NavLink to="/generate-show">Generate Show</NavLink>
