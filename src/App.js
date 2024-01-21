@@ -4,14 +4,18 @@ import "./App.css";
 import "./Components/Header/Header";
 
 import Header from "./Components/Header/Header";
-import GenerateEpisodeHome from "./Components/GenerateEpisode/GenerateEpisodeHome";
+import Home from './Components/GenerateEpisode/Home';
+import SearchResults from './Components/UI/Search/SearchResults';
 
 function App() {
   return (
     <div className="App">
       <Header />
       <Routes>
-          <Route path="/" element={<GenerateEpisodeHome />} />
+          <Route path="/" element={<Home />} />
+
+          <Route path="/search/:value" element={<SearchResults/>} />
+
           {/* <Route path="/generate-show" element={<GenerateShowHome />} />
           <Route path="/similar-shows" element={<SimilarShowsHome />} />
 

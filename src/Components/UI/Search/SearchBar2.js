@@ -1,17 +1,17 @@
 import { useState } from "react";
 
-import "./SearchBar1.css";
+import "./SearchBar2.css";
 
-import SearchIconWhite from "../../../Assets/SearchIconWhite";
+import SearchIconPurple from "../../../Assets/SeachIconPurple";
 
-function SearchBar1({ handleSearch }) {
+function SearchBar2({ handleSearch }) {
   const [searchValue, setSearch] = useState("");
 
   return (
-    <div className="search">
+    <div className="search-2">
       <input
         value={searchValue}
-        className="search-input"
+        className="search-input-2"
         placeholder="Search..."
         onChange={(event) => {
           setSearch(event.target.value);
@@ -23,17 +23,17 @@ function SearchBar1({ handleSearch }) {
         }}
       ></input>
       <div
-        className="search-icon"
+        className="search-icon-2"
         onClick={() => {
           if (searchValue !== "") {
             handleSearch(searchValue);
           }
         }}
       >
-        <SearchIconWhite/>
+        <SearchIconPurple />
       </div>
     </div>
   );
 }
 
-export default SearchBar1;
+export default SearchBar2;

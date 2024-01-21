@@ -1,25 +1,28 @@
-import "./GenerateEpisodeHome.css";
+import { useNavigate } from "react-router-dom";
+
+import "./Home.css";
 
 import SearchBar1 from "../UI/Search/SearchBar1";
 
-function GenerateEpisodeHome() {
+function Home() {
+  const navigate = useNavigate();
 
   const handleSearch = (searchValue) => {
-    console.log(searchValue);
+    navigate("/search/" + searchValue);
   }
 
 
   return (
-    <div className="generate-episode-home-container">
+    <div className="home-container">
       <div className="info">
         <div className="info-header">WHAT TO WATCH?</div>
         <div className="info-label">
           Pick a show to generate a random episode!
         </div>
       </div>
-      <SearchBar1 handleSearch={handleSearch}></SearchBar1>
+      <SearchBar1 handleSearch={handleSearch}/>
     </div>
   );
 }
 
-export default GenerateEpisodeHome;
+export default Home;

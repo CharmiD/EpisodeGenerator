@@ -1,0 +1,14 @@
+.search-container {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-label {
+    margin: 40px 0px 40px 40px;
+    color: #FFF;
+    font-family: Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: left;
+}
