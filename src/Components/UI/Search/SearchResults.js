@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
+import { useSelector } from 'react-redux';
 
 import "./SearchResults.css";
 
@@ -11,6 +12,7 @@ import ApiManager from "../../../ApiManager/ApiManager";
 function SearchResults() {
   const navigate = useNavigate();
   const currentSearchValue = useParams().value;
+  const searchType = useSelector((state) => state.search.searchType);
   const [showData, setShowData] = useState([]);
 
   useEffect(() => {
@@ -23,11 +25,16 @@ function SearchResults() {
   }, [currentSearchValue]);
 
   const handleSearch = (searchValue) => {
+  
     navigate("/search/" + searchValue);
   };
 
   const handleShowSelected = (show) => {
-    navigate("/show/" + show.id);
+    if (searchType === "generate-episode"){
+      navigate("/show/" + show.id);
+    } else if (searchType === "similar-shows") {
+      navigate("/similar-shows/" + show.id);
+    }
   }
 
   return (

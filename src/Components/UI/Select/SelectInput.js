@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import "./SelectInput.css";
 
 function SelectInput({ options, value, setValue }) {

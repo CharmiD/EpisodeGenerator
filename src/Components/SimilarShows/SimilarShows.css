@@ -1,0 +1,24 @@
+.similar-shows-container {
+    flex: 1;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.similar-shows-info {
+    margin-bottom: 50px;
+}
+
+.similar-shows-info-header {
+    color: #8E6EB5;
+    text-align: center;
+    font-family: Architects Daughter;
+    font-size: 48px;
+}
+
+.similar-shows-info-label {
+    color: #8E6EB5;
+    text-align: center;
+    font-family: Helvetica;
+    font-size: 20px;
+}

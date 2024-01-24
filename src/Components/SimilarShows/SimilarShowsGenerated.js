@@ -1,43 +1,60 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { Grid } from "@mui/material";
 
 import "./SimilarShowsGenerated.css";
 
-import ShowsCarousel from "../UI/ShowsCarousel/ShowsCarousel";
 import ApiManager from "../../ApiManager/ApiManager";
+import ShowPoster from "../UI/Show Poster/ShowPoster";
 
 function SimilarShowsGenerated() {
-  const currentShowId = useParams().show;
+  const navigate = useNavigate();
+  const currentShowId = useParams().showId;
   const [currentShowData, setCurrentShowData] = useState();
-  const [similarShows, setSimilarShows] = useState([]);
+  const [showData, setShowData] = useState([]);
 
-  // set similar shows
   useEffect(() => {
-    ApiManager.getSimilarShows(currentShowId)
+    ApiManager.getShowDetails(currentShowId)
       .then((response) => response.json())
       .then((response) => {
-        setSimilarShows(response.results);
+        setCurrentShowData(response);
+        ApiManager.getSimilarShows(currentShowId)
+          .then((response) => response.json())
+          .then((response) => {
+            setShowData(response.results);
+          })
+          .catch((err) => console.error(err));
       })
       .catch((err) => console.error(err));
+  }, []);
 
-      ApiManager.getShowDetails(currentShowId)
-      .then((response) => response.json())
-      .then((response) => {
-        setCurrentShowData(response)
-      })
-      .catch((err) => console.error(err));
-  }, [])
+  const handleShowSelected = (show) => {
+    navigate("/show/" + show.id);
+  };
 
   return (
-    <div className="similar-shows-generated-container">
-      <div className="label">Similar Shows To...</div>
+    <>
       {currentShowData ? (
-        <div className="show-name">{currentShowData.name}</div>
+        <div className="similiar-shows-generated-container">
+          <div className="similar-shows-generated-label">
+            Shows similar to "{currentShowData.name}"
+          </div>
+          <Grid
+            className="similiar-shows-data-grid"
+            container
+            spacing={{ xs: 2, md: 3 }}
+          >
+            {showData.map((show, index) => (
+              <Grid item xs={6} sm={4} md={12 / 7} key={index}>
+                <ShowPoster show={show} handleClick={handleShowSelected} />
+              </Grid>
+            ))}
+          </Grid>
+        </div>
       ) : (
-        <>/</>
+        <></>
       )}
-      <ShowsCarousel shows={similarShows} />
-    </div>
+    </>
   );
 }
 

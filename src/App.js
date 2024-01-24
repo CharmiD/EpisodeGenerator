@@ -10,6 +10,8 @@ import ShowDetails from './Components/GenerateEpisode/ShowDetails';
 import EpisodeDetails from './Components/GenerateEpisode/EpisodeDetails';
 import Popular from './Components/Popular/Popular';
 import GenerateShow from './Components/GenerateShow/GenerateShow';
+import SimilarShows from './Components/SimilarShows/SimilarShows';
+import SimilarShowsGenerated from './Components/SimilarShows/SimilarShowsGenerated';
 
 function App() {
   return (
@@ -19,10 +21,12 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/popular" element={<Popular/>} />
           <Route path="/generate-show" element={<GenerateShow/>} />
+          <Route path="/similar-shows" element={<SimilarShows/>} />
 
           <Route path="/search/:value" element={<SearchResults/>} />
           <Route path="/show/:showId" element={<ShowDetails/>} />
           <Route path="/episode/:showId/:selectedSeason" element={<EpisodeDetails/>} />
+          <Route path="/similar-shows/:showId" element={<SimilarShowsGenerated/>} />
        </Routes>
     </div>
   );

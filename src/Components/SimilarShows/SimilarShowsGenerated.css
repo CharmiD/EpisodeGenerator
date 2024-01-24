@@ -1,21 +1,8 @@
-.similar-shows-generated-container {
-
-    .label {
-        color: #FFF;
-        text-align: center;
-        font-family: Helvetica;
-        font-size: 24px;
-        font-weight: 400;
-        margin-top: 25px;
-    }
-
-    .show-name {
-        color: #FFF;
-        text-align: center;
-        font-family: Helvetica;
-        font-size: 40px;
-        font-weight: 400;
-        margin-top: 10px;
-        margin-bottom: 25px;
-    }
+.similar-shows-generated-label {
+    margin: 40px 0px 40px 40px;
+    color: #FFF;
+    font-family: Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: left;
 }
