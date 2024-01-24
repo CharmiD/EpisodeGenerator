@@ -6,6 +6,10 @@ import "./Components/Header/Header";
 import Header from "./Components/Header/Header";
 import Home from './Components/GenerateEpisode/Home';
 import SearchResults from './Components/UI/Search/SearchResults';
+import ShowDetails from './Components/GenerateEpisode/ShowDetails';
+import EpisodeDetails from './Components/GenerateEpisode/EpisodeDetails';
+import Popular from './Components/Popular/Popular';
+import GenerateShow from './Components/GenerateShow/GenerateShow';
 
 function App() {
   return (
@@ -13,16 +17,12 @@ function App() {
       <Header />
       <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/popular" element={<Popular/>} />
+          <Route path="/generate-show" element={<GenerateShow/>} />
 
           <Route path="/search/:value" element={<SearchResults/>} />
-
-          {/* <Route path="/generate-show" element={<GenerateShowHome />} />
-          <Route path="/similar-shows" element={<SimilarShowsHome />} />
-
-          <Route path="/show/:show" element={<GenerateEpisode />} />
-          <Route path="/episode-generated/:show/:season" element={<EpisodeGenerated />} />
-          <Route path="/similar-shows/:show" element={<SimilarShowsGenerated />} /> */}
-
+          <Route path="/show/:showId" element={<ShowDetails/>} />
+          <Route path="/episode/:showId/:selectedSeason" element={<EpisodeDetails/>} />
        </Routes>
     </div>
   );

@@ -27,7 +27,7 @@ function SearchResults() {
   };
 
   const handleShowSelected = (show) => {
-    console.log(show);
+    navigate("/show/" + show.id);
   }
 
   return (
