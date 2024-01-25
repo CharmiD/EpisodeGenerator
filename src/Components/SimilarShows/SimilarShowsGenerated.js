@@ -13,6 +13,7 @@ function SimilarShowsGenerated() {
   const [currentShowData, setCurrentShowData] = useState();
   const [showData, setShowData] = useState([]);
 
+  // get selected show data, then populate similar shows
   useEffect(() => {
     ApiManager.getShowDetails(currentShowId)
       .then((response) => response.json())
@@ -28,6 +29,7 @@ function SimilarShowsGenerated() {
       .catch((err) => console.error(err));
   }, []);
 
+  // navigate to show details on show select
   const handleShowSelected = (show) => {
     navigate("/show/" + show.id);
   };

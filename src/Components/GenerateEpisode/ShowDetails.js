@@ -14,6 +14,7 @@ function ShowDetails() {
   const [selectedSeason, setSelectedSeason] = useState("");
   const [showError, setShowError] = useState(false);
 
+  // get show details based on params
   useEffect(() => {
     ApiManager.getShowDetails(currentShowId)
       .then((response) => response.json())
@@ -23,10 +24,12 @@ function ShowDetails() {
       .catch((err) => console.error(err));
   }, []);
 
+  // reset error message on season select
   useEffect(() => {
     setShowError(false);
   }, [selectedSeason])
 
+  // navigate to episode details on button click
   const handleGenerateEpisode = () => {
     if (selectedSeason === "") {
       setShowError(true);

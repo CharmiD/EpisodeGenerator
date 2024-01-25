@@ -10,6 +10,7 @@ function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // navigate to search results on search input
   const handleSearch = (searchValue) => {
     dispatch(setSearchType("generate-episode"));
     navigate("/search/" + searchValue);

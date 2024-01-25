@@ -15,6 +15,7 @@ function SearchResults() {
   const searchType = useSelector((state) => state.search.searchType);
   const [showData, setShowData] = useState([]);
 
+  // populate shows based on search value in params
   useEffect(() => {
     ApiManager.getSearchedShows(currentSearchValue)
       .then((response) => response.json())
@@ -24,11 +25,12 @@ function SearchResults() {
       .catch((err) => console.error(err));
   }, [currentSearchValue]);
 
+  // re-navigate to search results on new search input
   const handleSearch = (searchValue) => {
-  
     navigate("/search/" + searchValue);
   };
 
+  // navigate based on search type
   const handleShowSelected = (show) => {
     if (searchType === "generate-episode"){
       navigate("/show/" + show.id);

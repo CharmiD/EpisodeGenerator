@@ -12,6 +12,7 @@ function Popular() {
   const navigate = useNavigate();
   const [showData, setShowData] = useState([]);
 
+  // get initial popular shows
   useEffect(() => {
     ApiManager.getPopularShows(1)
       .then((response) => response.json())
@@ -21,10 +22,12 @@ function Popular() {
       .catch((err) => console.error(err));
   }, []);
 
+  // navigate to search on search input
   const handleSearch = (searchValue) => {
     navigate("/search/" + searchValue);
   };
 
+  // navigate to show details on show poster click
   const handleShowSelected = (show) => {
     navigate("/show/" + show.id);
   }

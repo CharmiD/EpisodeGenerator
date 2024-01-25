@@ -13,6 +13,7 @@ function EpisodeDetails() {
   const [randomEpisode, setRandomEpisode] = useState();
   const [currentShowData, setCurrentShowData] = useState();
 
+  // get episode details based on params
   useEffect(() => {
     ApiManager.getShowDetails(currentShowId)
       .then((response) => response.json())

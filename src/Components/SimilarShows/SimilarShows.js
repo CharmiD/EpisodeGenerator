@@ -10,6 +10,7 @@ function SimilarShows() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // navigate to search results on search input
   const handleSearch = (searchValue) => {
     dispatch(setSearchType("similar-shows"));
     navigate("/search/" + searchValue);

@@ -1,5 +1,5 @@
 .header-container {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.60) 0%, rgba(0, 0, 0, 0.00) 100%);
+    background: linear-gradient(180deg, black 0%, rgba(0, 0, 0, 0.00) 100%);
     width: 100%;
     display: flex;
     padding-top: 10px;
