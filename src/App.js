@@ -12,6 +12,7 @@ import Popular from './Components/Popular/Popular';
 import GenerateShow from './Components/GenerateShow/GenerateShow';
 import SimilarShows from './Components/SimilarShows/SimilarShows';
 import SimilarShowsGenerated from './Components/SimilarShows/SimilarShowsGenerated';
+import PageNotFound from './Components/PageNotFound';
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
           <Route path="/show/:showId" element={<ShowDetails/>} />
           <Route path="/episode/:showId/:selectedSeason" element={<EpisodeDetails/>} />
           <Route path="/similar-shows/:showId" element={<SimilarShowsGenerated/>} />
+
+          <Route path='*' element={<PageNotFound/>}/>
        </Routes>
     </div>
   );
