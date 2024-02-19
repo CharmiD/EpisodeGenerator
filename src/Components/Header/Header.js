@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Header.css";
 
 import Logo from "../../Assets/Logo";
@@ -7,13 +8,14 @@ import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
 
 function Header() {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const [navbarOpen, setNavBarOpen] = useState(false);
 
   return (
     <>
       <nav className="nav">
-        <div className="nav-logo">
+        <div className="nav-logo" onClick={()=> navigate("/")}>
           <span>
             <Logo />
           </span>

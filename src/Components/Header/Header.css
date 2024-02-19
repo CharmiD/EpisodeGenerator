@@ -1,5 +1,7 @@
 @media (min-width: 1000px) {
-    .nav-menu, .nav-menu-links {
+
+    .nav-menu,
+    .nav-menu-links {
         display: none !important;
     }
 }
@@ -19,6 +21,7 @@
 
 .nav-logo {
     margin-left: 40px;
+    cursor: pointer;
 }
 
 .nav-links-group {
@@ -27,6 +30,7 @@
     position: absolute;
     right: 0;
 }
+
 .nav-link a {
     display: block;
     font-family: Helvetica;
@@ -36,9 +40,16 @@
     padding: 0px 30px 0 30px
 }
 
+.nav-link {
+    .active {
+        color: #8E6EB5 !important;
+    }
 
-.nav-link .active, .nav-link a:hover {
-    color: #8E6EB5 !important;
+    a:hover {
+        color: #8E6EB5 !important;
+        font-weight: bold;
+        text-shadow: 2px 2px black;
+    }
 }
 
 .nav-menu {
@@ -69,7 +80,7 @@
 }
 
 .nav-menu-links {
-    .MuiList-root{
+    .MuiList-root {
         background-color: black;
     }
 }
