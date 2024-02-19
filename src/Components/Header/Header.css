@@ -1,31 +1,75 @@
-.header-container {
-    background: linear-gradient(180deg, black 0%, rgba(0, 0, 0, 0.00) 100%);
-    width: 100%;
-    display: flex;
-    padding-top: 10px;
-
-    .header-logo {
-        padding-left: 40px;
+@media (min-width: 1000px) {
+    .nav-menu, .nav-menu-links {
+        display: none !important;
     }
+}
 
-    .links-group {
-        display: flex;
-        float: right;
-        padding-top: 15px;
-        position: absolute;
-        right: 0;
+@media (max-width: 1000px) {
+    .nav-links-group {
+        display: none !important;
+    }
+}
 
-        .link a {
-            display: block;
-            font-family: Helvetica;
-            font-size: 20px;
-            color: white;
-            text-decoration: none;
-            padding: 0px 30px 0 30px
-        }
+.nav {
+    display: flex;
+    align-items: center;
+    padding-top: 5px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+}
 
-        .active, .link a:hover {
-            color: #8E6EB5 !important;
-        }
+.nav-logo {
+    margin-left: 40px;
+}
+
+.nav-links-group {
+    display: flex;
+    float: right;
+    position: absolute;
+    right: 0;
+}
+.nav-link a {
+    display: block;
+    font-family: Helvetica;
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+    padding: 0px 30px 0 30px
+}
+
+
+.nav-link .active, .nav-link a:hover {
+    color: #8E6EB5 !important;
+}
+
+.nav-menu {
+    margin: auto 40px auto auto;
+}
+
+.menu-button {
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid #8E6EB5;
+    border-radius: 5px;
+}
+
+.menu-button:hover {
+    border: 2px solid #8E6EB5;
+}
+
+.menu-button svg {
+    margin: 5px;
+}
+
+.nav-open {
+    display: block;
+}
+
+.nav-closed {
+    display: none;
+}
+
+.nav-menu-links {
+    .MuiList-root{
+        background-color: black;
     }
 }
