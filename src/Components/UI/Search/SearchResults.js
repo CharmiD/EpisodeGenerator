@@ -15,12 +15,15 @@ function SearchResults() {
   const searchType = useSelector((state) => state.search.searchType);
   const [showData, setShowData] = useState([]);
 
+
+
   // populate shows based on search value in params
   useEffect(() => {
     ApiManager.getSearchedShows(currentSearchValue)
       .then((response) => response.json())
       .then((response) => {
         setShowData(response.results);
+        console.log("results")
       })
       .catch((err) => console.error(err));
   }, [currentSearchValue]);

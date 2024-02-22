@@ -15,10 +15,13 @@ const ENDPOINTS = {
   `genre/tv/list?language=en`,
 
   GET_SHOWS_BY_GENRE: (genreIds) => 
-  `discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${genreIds}`,
+  `discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&with_origin_country=US&with_genres=${genreIds}`,
 
-  GET_SIMILAR_SHOWS: (showId) => 
-  `tv/${showId}/similar?language=en-US&page=1'`
+  GET_SIMILAR_SHOWS: (showId,page) => 
+  `tv/${showId}/similar?language=en-US&page=${page}'`,
+
+  GET_TRENDING_SHOWS: (page) =>
+  `trending/tv/week?language=en-US&page=${page}`,
 };
 
 export default ENDPOINTS;

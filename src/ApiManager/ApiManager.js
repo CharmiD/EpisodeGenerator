@@ -42,8 +42,13 @@ class ApiManager {
         return fetch(url, options);
     }
 
-    static getSimilarShows = (showId) => {
-        const url = BASE_URL + ENDPOINTS.GET_SIMILAR_SHOWS(showId);
+    static getSimilarShows = (showId, page) => {
+        const url = BASE_URL + ENDPOINTS.GET_SIMILAR_SHOWS(showId,page);
+        return fetch(url, options);
+    }
+    
+    static getTrendingShows = (page) => {
+        const url = BASE_URL + ENDPOINTS.GET_TRENDING_SHOWS(page);
         return fetch(url, options);
     }
 };

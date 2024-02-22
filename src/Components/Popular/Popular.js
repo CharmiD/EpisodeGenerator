@@ -11,16 +11,21 @@ import ApiManager from "../../ApiManager/ApiManager";
 function Popular() {
   const navigate = useNavigate();
   const [showData, setShowData] = useState([]);
+  const [page, setPage] = useState(1);
 
   // get initial popular shows
   useEffect(() => {
-    ApiManager.getPopularShows(1)
+    ApiManager.getTrendingShows(page)
       .then((response) => response.json())
       .then((response) => {
-        setShowData(response.results);
+        setShowData(oldData => [...oldData,...response.results] );
+
+        if(page < 10){
+          setPage(page+1);
+        };
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [page]);
 
   // navigate to search on search input
   const handleSearch = (searchValue) => {

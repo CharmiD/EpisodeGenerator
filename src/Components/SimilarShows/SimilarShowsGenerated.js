@@ -12,6 +12,7 @@ function SimilarShowsGenerated() {
   const currentShowId = useParams().showId;
   const [currentShowData, setCurrentShowData] = useState();
   const [showData, setShowData] = useState([]);
+  const [page, setPage] = useState(0);
 
   // get selected show data, then populate similar shows
   useEffect(() => {
@@ -19,15 +20,25 @@ function SimilarShowsGenerated() {
       .then((response) => response.json())
       .then((response) => {
         setCurrentShowData(response);
-        ApiManager.getSimilarShows(currentShowId)
-          .then((response) => response.json())
-          .then((response) => {
-            setShowData(response.results);
-          })
-          .catch((err) => console.error(err));
+        setPage(1)
       })
       .catch((err) => console.error(err));
   }, []);
+
+  useEffect(() => {
+    if(page !== 0 ){
+      ApiManager.getSimilarShows(currentShowId, page)
+      .then((response) => response.json())
+      .then((response) => {
+        setShowData(oldData => [...oldData,...response.results] );
+
+        if(page < 10){
+          setPage(page+1);
+        };
+      })
+      .catch((err) => console.error(err));
+    }
+  }, [page]);
 
   // navigate to show details on show select
   const handleShowSelected = (show) => {
