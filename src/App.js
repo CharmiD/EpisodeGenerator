@@ -4,6 +4,7 @@ import "./App.css";
 import "./Components/Header/Header";
 
 import Header from "./Components/Header/Header";
+import Footer from './Components/Footer/Footer';
 import Home from './Components/GenerateEpisode/Home';
 import SearchResults from './Components/UI/Search/SearchResults';
 import ShowDetails from './Components/GenerateEpisode/ShowDetails';
@@ -31,6 +32,7 @@ function App() {
 
           <Route path='*' element={<PageNotFound/>}/>
        </Routes>
+       <Footer/>
     </div>
   );
 }
