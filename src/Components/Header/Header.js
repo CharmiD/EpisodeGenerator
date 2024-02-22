@@ -57,8 +57,8 @@ function Header() {
                 x2="38.5"
                 y2="1.5"
                 stroke="#8E6EB5"
-                stroke-width="3"
-                stroke-linecap="round"
+                strokeWidth="3"
+                strokeLinecap="round"
               />
               <line
                 x1="1.5"
@@ -66,8 +66,8 @@ function Header() {
                 x2="38.5"
                 y2="21.5"
                 stroke="#8E6EB5"
-                stroke-width="3"
-                stroke-linecap="round"
+                strokeWidth="3"
+                strokeLinecap="round"
               />
               <line
                 x1="1.5"
@@ -75,8 +75,8 @@ function Header() {
                 x2="38.5"
                 y2="11.5"
                 stroke="#8E6EB5"
-                stroke-width="3"
-                stroke-linecap="round"
+                strokeWidth="3"
+                strokeLinecap="round"
               />
             </svg>
           </button>

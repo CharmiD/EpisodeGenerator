@@ -12,3 +12,10 @@
     font-weight: 700;
     text-align: left;
 }
+
+.info-message {
+    color: white;
+    font-family: Helvetica;
+    font-size: 14px;
+    margin-top: 50px;
+}

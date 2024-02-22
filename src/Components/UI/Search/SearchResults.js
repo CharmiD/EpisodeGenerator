@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 import "./SearchResults.css";
 
@@ -32,12 +32,12 @@ function SearchResults() {
 
   // navigate based on search type
   const handleShowSelected = (show) => {
-    if (searchType === "generate-episode"){
+    if (searchType === "generate-episode") {
       navigate("/show/" + show.id);
     } else if (searchType === "similar-shows") {
       navigate("/similar-shows/" + show.id);
     }
-  }
+  };
 
   return (
     <>
@@ -48,17 +48,18 @@ function SearchResults() {
         <div className="search-label">
           Search results for "{currentSearchValue}"
         </div>
-        <Grid
-          className="show-data-grid"
-          container
-          spacing={{ xs: 2, md: 3 }}
-        >
+        <Grid className="show-data-grid" container spacing={{ xs: 2, md: 3 }}>
           {showData.map((show, index) => (
-            <Grid item xs={6} sm={4} md={12/7} key={index} >
-                <ShowPoster show={show} handleClick={handleShowSelected}/>
+            <Grid item xs={6} sm={4} md={12 / 7} key={index}>
+              <ShowPoster show={show} handleClick={handleShowSelected} />
             </Grid>
           ))}
         </Grid>
+        {showData.length === 0 ? (
+          <div className="info-message">No Search Results Found</div>
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );

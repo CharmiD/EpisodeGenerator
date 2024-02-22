@@ -1,9 +1,14 @@
 .show-poster-background {
     border-radius: 15px;
+    border: 2px solid black;
     background: #000;
     width: fit-content;
     margin: auto;
     cursor: pointer;
+}
+
+.show-poster-background:hover {
+    border: 2px solid #8E6EB5;
 }
 
 .show-poster-image {
@@ -13,6 +18,21 @@
     display: flex;
     margin: auto;
     padding: 10px
+}
+
+.show-poster-image-error {
+    width: 150px;
+    height: 200px;
+    border-radius: 15px;
+    display: flex;
+    margin: auto;
+    padding: 10px;
+
+    p {
+        margin: auto;
+        font-size: 10px;
+        color: white;
+    }
 }
 
 .show-poster-info {

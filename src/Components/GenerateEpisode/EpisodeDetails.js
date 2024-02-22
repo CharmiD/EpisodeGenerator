@@ -50,11 +50,17 @@ function EpisodeDetails() {
       {randomEpisode ? (
         <>
           <div className="episode-details">
-            <img
-              className="episode-details-image"
-              src={`https://image.tmdb.org/t/p/w500${randomEpisode.still_path}`}
-              alt={randomEpisode.name}
-            ></img>
+            {randomEpisode.still_path ? (
+              <img
+                className="episode-details-image"
+                src={`https://image.tmdb.org/t/p/w500${randomEpisode.still_path}`}
+                alt={randomEpisode.name}
+              ></img>
+            ) : (
+              <div className="episode-details-image-error">
+                <p>No Image Available</p>
+              </div>
+            )}
             <div className="episode-details-text">
               <div className="episode-details-name">
                 S{randomEpisode.season_number}:E{randomEpisode.episode_number} -{" "}
@@ -68,7 +74,10 @@ function EpisodeDetails() {
                   <RatingIcon />
                 </div>
                 <div className="episode-details-rating">
-                  {randomEpisode.vote_average.toFixed(1)}/10
+                  {randomEpisode.vote_average
+                    ? randomEpisode.vote_average.toFixed(1)
+                    : ""}
+                  /10
                 </div>
               </div>
               <div className="episdoe-details-overview">

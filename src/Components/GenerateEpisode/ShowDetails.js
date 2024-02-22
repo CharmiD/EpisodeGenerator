@@ -27,7 +27,7 @@ function ShowDetails() {
   // reset error message on season select
   useEffect(() => {
     setShowError(false);
-  }, [selectedSeason])
+  }, [selectedSeason]);
 
   // navigate to episode details on button click
   const handleGenerateEpisode = () => {
@@ -43,11 +43,17 @@ function ShowDetails() {
       {currentShowData ? (
         <>
           <div className="show-details">
-            <img
-              className="show-details-image"
-              src={`https://image.tmdb.org/t/p/w500${currentShowData.poster_path}`}
-              alt={currentShowData.name}
-            ></img>
+            {currentShowData.poster_path ? (
+              <img
+                className="show-details-image"
+                src={`https://image.tmdb.org/t/p/w500${currentShowData.poster_path}`}
+                alt={currentShowData.name}
+              ></img>
+            ) : (
+              <div className="show-details-image-error">
+                <p>No Image Available</p>
+              </div>
+            )}
             <div className="show-details-text">
               <div className="show-details-name">{currentShowData.name}</div>
               <div className="show-details-status">
