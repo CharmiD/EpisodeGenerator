@@ -30,5 +30,15 @@
 }
 
 .generate-show-button{
-    margin: 40px 0;
+    margin-top: 40px;
+}
+
+.generate-show-button.no-error {
+    margin-bottom: 40px;
+}
+
+.generate-show-error {
+    color: #7F2F2F;
+    margin-top: 10px;
+    margin-bottom: 40px;
 }

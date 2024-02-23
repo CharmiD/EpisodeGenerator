@@ -18,4 +18,9 @@
     font-family: Helvetica;
     font-size: 14px;
     margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.show-data-grid-container {
+    margin-left: 10px;
 }

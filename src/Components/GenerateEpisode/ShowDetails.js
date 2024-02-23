@@ -19,6 +19,7 @@ function ShowDetails() {
     ApiManager.getShowDetails(currentShowId)
       .then((response) => response.json())
       .then((response) => {
+        response.aggregate_credits.cast.sort((a, b) => a.order - b.order);
         setCurrentShowData(response);
       })
       .catch((err) => console.error(err));
@@ -65,7 +66,15 @@ function ShowDetails() {
               <div className="show-details-section">
                 <div className="show-details-label">Release Date:</div>
                 <div className="show-details-value">
-                  {currentShowData.first_air_date}
+                  {new Date(currentShowData.first_air_date).toLocaleDateString(
+                    "en-us",
+                    {
+                      timeZone: "UTC",
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    }
+                  )}
                 </div>
               </div>
               <div className="show-details-section">
@@ -77,13 +86,16 @@ function ShowDetails() {
               <div className="show-details-section">
                 <div className="show-details-label">Cast:</div>
                 <div className="show-details-value">
-                  {currentShowData.aggregate_credits.cast[0].name}
+                  {currentShowData.aggregate_credits.cast
+                    .slice(0, 5)
+                    .map((x) => x.name)
+                    .join(", ")}
                 </div>
               </div>
               <div className="show-details-section">
                 <div className="show-details-label">Seasons:</div>
                 <div className="show-details-value">
-                  {currentShowData.seasons.length - 1}
+                  {currentShowData.number_of_seasons}
                 </div>
               </div>
             </div>
@@ -92,7 +104,7 @@ function ShowDetails() {
             <div className="generate-episode-inputs">
               <div className="generate-episode-select">
                 <SelectInput
-                  options={currentShowData.seasons.length - 1}
+                  options={currentShowData.number_of_seasons}
                   value={selectedSeason}
                   setValue={setSelectedSeason}
                 ></SelectInput>

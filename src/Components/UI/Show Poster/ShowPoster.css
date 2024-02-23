@@ -51,11 +51,17 @@
 
 .show-poster-name {
     color: #FFF;
-    text-align: center;
     font-family: Helvetica;
     font-size: 14px;
-    padding: 5px;
     height: 50px;
     width: 150px;
+    padding: 5px;
     margin: auto;
+
+    p {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 }

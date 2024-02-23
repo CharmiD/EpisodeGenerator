@@ -22,7 +22,7 @@ function ShowPoster({ show, handleClick }) {
             {show.first_air_date.split("-")[0]}
           </div>
         </div>
-        <div className="show-poster-name">{show.name}</div>
+        <div className="show-poster-name"><p>{show.name}</p></div>
       </div>
     </div>
   );

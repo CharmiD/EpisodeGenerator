@@ -19,7 +19,10 @@ function EpisodeDetails() {
       .then((response) => response.json())
       .then((response) => {
         setCurrentShowData(response);
-        generateRandomEpisode(response.seasons);
+        const seasonsData = response.seasons.filter(function (x) {
+          return x.season_number !== 0;
+        });
+        generateRandomEpisode(seasonsData);
       })
       .catch((err) => console.error(err));
   }, []);
@@ -29,13 +32,15 @@ function EpisodeDetails() {
     var seasonNum;
     var episodeNum;
     if (selectedSeason === "all") {
-      seasonNum = Math.floor(Math.random() * seasonsData.length - 1) + 1;
+      seasonNum = Math.floor(Math.random() * seasonsData.length) + 1;
       episodeNum =
-        Math.floor(Math.random() * seasonsData[seasonNum].episode_count) + 1;
+        Math.floor(Math.random() * seasonsData[seasonNum - 1].episode_count) +
+        1;
     } else {
       seasonNum = Number(selectedSeason);
       episodeNum =
-        Math.floor(Math.random() * seasonsData[seasonNum].episode_count) + 1;
+        Math.floor(Math.random() * seasonsData[seasonNum - 1].episode_count) +
+        1;
     }
     ApiManager.getEpisodeDetails(currentShowId, seasonNum, episodeNum)
       .then((response) => response.json())
@@ -86,7 +91,15 @@ function EpisodeDetails() {
               <div className="episode-details-section">
                 <div className="episode-details-label">Release Date:</div>
                 <div className="episode-details-value">
-                  {randomEpisode.air_date}
+                  {new Date(randomEpisode.air_date).toLocaleDateString(
+                    "en-us",
+                    {
+                      timeZone: "UTC",
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    }
+                  )}
                 </div>
               </div>
               <div className="episode-details-section">
@@ -99,7 +112,12 @@ function EpisodeDetails() {
           </div>
           <div className="generate-again-container">
             <Button
-              handleClick={() => generateRandomEpisode(currentShowData.seasons)}
+              handleClick={() => {
+                const seasonsData = currentShowData.seasons.filter(function (x) {
+                  return x.season_number !== 0;
+                });
+                generateRandomEpisode(seasonsData);
+              }}
               text="Generate Again"
             ></Button>
           </div>

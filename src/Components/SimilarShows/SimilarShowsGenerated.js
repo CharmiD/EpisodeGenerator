@@ -20,23 +20,23 @@ function SimilarShowsGenerated() {
       .then((response) => response.json())
       .then((response) => {
         setCurrentShowData(response);
-        setPage(1)
+        setPage(1);
       })
       .catch((err) => console.error(err));
   }, []);
 
   useEffect(() => {
-    if(page !== 0 ){
+    if (page !== 0) {
       ApiManager.getSimilarShows(currentShowId, page)
-      .then((response) => response.json())
-      .then((response) => {
-        setShowData(oldData => [...oldData,...response.results] );
+        .then((response) => response.json())
+        .then((response) => {
+          setShowData((oldData) => [...oldData, ...response.results]);
 
-        if(page < 10){
-          setPage(page+1);
-        };
-      })
-      .catch((err) => console.error(err));
+          if (page < 10) {
+            setPage(page + 1);
+          }
+        })
+        .catch((err) => console.error(err));
     }
   }, [page]);
 
@@ -52,17 +52,19 @@ function SimilarShowsGenerated() {
           <div className="similar-shows-generated-label">
             Shows similar to "{currentShowData.name}"
           </div>
-          <Grid
-            className="similiar-shows-data-grid"
-            container
-            spacing={{ xs: 2, md: 3 }}
-          >
-            {showData.map((show, index) => (
-              <Grid item xs={6} sm={4} md={12 / 7} key={index}>
-                <ShowPoster show={show} handleClick={handleShowSelected} />
-              </Grid>
-            ))}
-          </Grid>
+          <div className="similar-shows-data-grid-container">
+            <Grid
+              className="similiar-shows-data-grid"
+              container
+              spacing={{ xs: 2, md: 3 }}
+            >
+              {showData.map((show, index) => (
+                <Grid item xs={6} sm={4} md={2} key={index}>
+                  <ShowPoster show={show} handleClick={handleShowSelected} />
+                </Grid>
+              ))}
+            </Grid>
+          </div>
         </div>
       ) : (
         <></>

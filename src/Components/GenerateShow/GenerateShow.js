@@ -10,6 +10,7 @@ import ApiManager from "../../ApiManager/ApiManager";
 function GenerateShow() {
   const navigate = useNavigate();
   const [genres, setGenres] = useState([]);
+  const [showError, setShowError] = useState(false);
 
   // api call to get genres available
   useEffect(() => {
@@ -51,13 +52,17 @@ function GenerateShow() {
       .then((response) => response.json())
       .then((response) => {
         generatedShows = response.results;
-        const show =
-          generatedShows.length === 1
-            ? generatedShows[0]
-            : generatedShows[
-                Math.floor(Math.random() * generatedShows.length - 1)
-              ];
-        navigate("/show/" + show.id);
+        if (generatedShows.length !== 0) {
+          const show =
+            generatedShows.length === 1
+              ? generatedShows[0]
+              : generatedShows[
+                  Math.floor(Math.random() * generatedShows.length - 1)
+                ];
+          navigate("/show/" + show.id);
+        } else {
+          setShowError(true);
+        }
       })
       .catch((err) => console.error(err));
   };
@@ -84,12 +89,16 @@ function GenerateShow() {
           ))}
         </Grid>
       </div>
-      <div className="generate-show-button">
-        <Button
-          handleClick={handleGenerateShow}
-          text="Generate Show"
-        ></Button>
+      <div className={"generate-show-button " + (!showError ? "no-error" : "")} >
+        <Button handleClick={handleGenerateShow} text="Generate Show"></Button>
       </div>
+      {showError ? (
+        <div className="generate-show-error">
+          No shows found with selected generes!
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
