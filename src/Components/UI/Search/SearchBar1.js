@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./SearchBar1.css";
 
 import SearchIconWhite from "../../../Assets/SearchIconWhite";
+import CrossIconGrey from "../../../Assets/CrossIconGrey";
 
 function SearchBar1({ handleSearch }) {
   const [searchValue, setSearch] = useState("");
@@ -22,6 +23,13 @@ function SearchBar1({ handleSearch }) {
           }
         }}
       ></input>
+      {searchValue !== "" ? (
+        <dix className="search-cross" onClick={()=>{setSearch("")}}>
+          <CrossIconGrey />
+        </dix>
+      ) : (
+        <></>
+      )}
       <div
         className="search-icon"
         onClick={() => {
@@ -30,7 +38,7 @@ function SearchBar1({ handleSearch }) {
           }
         }}
       >
-        <SearchIconWhite/>
+        <SearchIconWhite />
       </div>
     </div>
   );

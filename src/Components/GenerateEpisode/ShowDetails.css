@@ -1,9 +1,33 @@
 .show-details-container {
-    margin-top: 100px;
+    margin-top: 50px;
+    flex: 1;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.show-details-redo-icon{
+    display: flex;
+    margin-left: 40px;
+    cursor: pointer;
+
+    p {
+        color: #8E6EB5;
+        margin: auto 0 auto 5px;
+        font-family: Helvetica;
+        font-size: 14px;
+    }
+}
+
+.show-details-redo-icon:hover{
+    p {
+        font-weight: bold;
+    }
 }
 
 .show-details {
     display: flex;
+    margin-top: 50px;
 }
 
 .show-details-section {

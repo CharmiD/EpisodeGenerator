@@ -1,3 +1,10 @@
+.generate-show-container {
+    flex: 1;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
 .generate-show-info {
     margin: 40px auto;
     color: #8E6EB5;

@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 
 import "./GenerateShow.css";
 
 import Button from "../UI/Button/Button";
 import ApiManager from "../../ApiManager/ApiManager";
+import { setSelectedGenres } from "../../App/GenresSlice";
 
 function GenerateShow() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [genres, setGenres] = useState([]);
   const [showError, setShowError] = useState(false);
 
@@ -48,6 +52,8 @@ function GenerateShow() {
         selectedGenres += genres[i].id + ",";
       }
     }
+    dispatch(setSelectedGenres(selectedGenres));
+    
     ApiManager.getShowsByGenres(selectedGenres)
       .then((response) => response.json())
       .then((response) => {
@@ -59,7 +65,11 @@ function GenerateShow() {
               : generatedShows[
                   Math.floor(Math.random() * generatedShows.length - 1)
                 ];
-          navigate("/show/" + show.id);
+          navigate("/show/" + show.id, {
+            state: {
+              generateShow: true,
+            }
+          });
         } else {
           setShowError(true);
         }

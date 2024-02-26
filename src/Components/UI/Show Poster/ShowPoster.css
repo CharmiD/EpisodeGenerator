@@ -9,16 +9,50 @@
 
 .show-poster-background:hover {
     border: 2px solid #8E6EB5;
+
+    .show-poster-image-gradient{
+        opacity: 100;
+    }
+}
+
+.show-poster-image-container {
+    width: 150px;
+    height: 200px;
+    margin: auto;
+    padding: 10px;
+    position: relative;
+}
+
+.show-poster-image-gradient {
+    width: 150px;
+    height: 200px;
+    border-radius: 5px;
+    background: linear-gradient(0deg, #8E6EB5 0, rgba(219, 105, 55, 0) 100%);
+    opacity: 0;
+    position: absolute;
 }
 
 .show-poster-image {
-    width: 150px;
-    height: 200px;
-    border-radius: 15px;
-    display: flex;
-    margin: auto;
-    padding: 10px
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    display: block;
 }
+
+/* .show-poster-image-container::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    transition: opacity .3s;
+    background: linear-gradient(0deg, #db6937 0, rgba(219, 105, 55, 0) 100%);
+    opacity: 0;
+    z-index: 1;
+} */
 
 .show-poster-image-error {
     width: 150px;

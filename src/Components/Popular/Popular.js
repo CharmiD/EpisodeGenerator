@@ -34,7 +34,11 @@ function Popular() {
 
   // navigate to show details on show poster click
   const handleShowSelected = (show) => {
-    navigate("/show/" + show.id);
+    navigate("/show/" + show.id, {
+      state: {
+        generateShow: false,
+      }
+    });
   };
 
   return (

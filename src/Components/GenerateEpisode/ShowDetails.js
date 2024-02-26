@@ -1,18 +1,22 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import "./ShowDetails.css";
 
 import ApiManager from "../../ApiManager/ApiManager";
 import Button from "../UI/Button/Button";
 import SelectInput from "../UI/Select/SelectInput";
+import RedoIcon from "../../Assets/RedoIcon";
 
 function ShowDetails() {
   const navigate = useNavigate();
-  const currentShowId = useParams().showId;
+  const [currentShowId, setCurrentShowId] = useState(useParams().showId);
   const [currentShowData, setCurrentShowData] = useState();
   const [selectedSeason, setSelectedSeason] = useState("");
   const [showError, setShowError] = useState(false);
+  const { state } = useLocation();
+  const selectedGenres = useSelector((state) => state.genres.selectedGenres);
 
   // get show details based on params
   useEffect(() => {
@@ -23,7 +27,7 @@ function ShowDetails() {
         setCurrentShowData(response);
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [currentShowId]);
 
   // reset error message on season select
   useEffect(() => {
@@ -39,8 +43,36 @@ function ShowDetails() {
     }
   };
 
+  // handle regenerate show button clic
+  const handleRegenerateShow = () => {
+    var generatedShows = [];
+    ApiManager.getShowsByGenres(selectedGenres)
+      .then((response) => response.json())
+      .then((response) => {
+        generatedShows = response.results;
+        const show =
+          generatedShows.length === 1
+            ? generatedShows[0]
+            : generatedShows[
+                Math.floor(Math.random() * generatedShows.length - 1)
+              ];
+        console.log(show);
+        setCurrentShowId(show.id);
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
     <div className="show-details-container">
+      {state.generateShow && selectedGenres !== ""? (
+        <div className="show-details-redo-icon" onClick={handleRegenerateShow}>
+          <RedoIcon />
+          <p>Regenerate Show</p>
+        </div>
+      ) : (
+        <></>
+      )}
+
       {currentShowData ? (
         <>
           <div className="show-details">

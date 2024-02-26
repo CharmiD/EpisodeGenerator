@@ -33,7 +33,11 @@ function SearchResults() {
   // navigate based on search type
   const handleShowSelected = (show) => {
     if (searchType === "generate-episode") {
-      navigate("/show/" + show.id);
+      navigate("/show/" + show.id, {
+        state: {
+          generateShow: false,
+        }
+      });
     } else if (searchType === "similar-shows") {
       navigate("/similar-shows/" + show.id);
     }
