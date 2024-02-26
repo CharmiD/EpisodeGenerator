@@ -1,3 +1,9 @@
+.similiar-shows-generated-container {
+    flex: 1;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .similar-shows-generated-label {
     margin: 40px 0px 40px 40px;
     color: #FFF;

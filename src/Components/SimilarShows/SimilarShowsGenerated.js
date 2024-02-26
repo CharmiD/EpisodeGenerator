@@ -69,6 +69,11 @@ function SimilarShowsGenerated() {
               ))}
             </Grid>
           </div>
+          {showData.length === 0 ? (
+          <div className="info-message">No Similar Shows Found</div>
+        ) : (
+          <></>
+        )}
         </div>
       ) : (
         <></>
