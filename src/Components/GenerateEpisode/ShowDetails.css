@@ -59,6 +59,13 @@
     }
 }
 
+.show-deatils-tagline {
+    width: 300px;
+    margin: 5px 40px;
+    color:grey;
+    font-family: Helvetica;
+}
+
 .show-details-text {
     color: #FFF;
     font-family: Helvetica;

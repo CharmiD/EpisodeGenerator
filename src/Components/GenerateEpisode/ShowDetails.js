@@ -77,17 +77,20 @@ function ShowDetails() {
       {currentShowData ? (
         <>
           <div className="show-details">
-            {currentShowData.poster_path ? (
-              <img
-                className="show-details-image"
-                src={`https://image.tmdb.org/t/p/w500${currentShowData.poster_path}`}
-                alt={currentShowData.name}
-              ></img>
-            ) : (
-              <div className="show-details-image-error">
-                <p>No Image Available</p>
-              </div>
-            )}
+            <div className="show=details-image-container">
+              {currentShowData.poster_path ? (
+                <img
+                  className="show-details-image"
+                  src={`https://image.tmdb.org/t/p/w500${currentShowData.poster_path}`}
+                  alt={currentShowData.name}
+                ></img>
+              ) : (
+                <div className="show-details-image-error">
+                  <p>No Image Available</p>
+                </div>
+              )}
+              <div className="show-deatils-tagline">{currentShowData.tagline}</div>
+            </div>
             <div className="show-details-text">
               <div className="show-details-name">{currentShowData.name}</div>
               <div className="show-details-visuals">
@@ -105,8 +108,16 @@ function ShowDetails() {
                 </div>
                 <img
                   className="show-details-network-logo"
-                  src={`https://image.tmdb.org/t/p/w500${currentShowData.networks[currentShowData.networks.length - 1].logo_path}`}
-                  alt={currentShowData.networks[currentShowData.networks.length - 1].name}
+                  src={`https://image.tmdb.org/t/p/w500${
+                    currentShowData.networks[
+                      currentShowData.networks.length - 1
+                    ].logo_path
+                  }`}
+                  alt={
+                    currentShowData.networks[
+                      currentShowData.networks.length - 1
+                    ].name
+                  }
                 ></img>
               </div>
               <div className="show-details-overview">
