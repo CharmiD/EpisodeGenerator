@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import "./EpisodeDetails.css";
 
 import ApiManager from "../../ApiManager/ApiManager";
-import Button from "../UI/Button/Button";
 import RatingIcon from "../../Assets/RatingIcon";
 import RedoIcon from "../../Assets/RedoIcon";
 

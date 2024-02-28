@@ -8,6 +8,7 @@ import ApiManager from "../../ApiManager/ApiManager";
 import Button from "../UI/Button/Button";
 import SelectInput from "../UI/Select/SelectInput";
 import RedoIcon from "../../Assets/RedoIcon";
+import RatingIcon from "../../Assets/RatingIcon";
 
 function ShowDetails() {
   const navigate = useNavigate();
@@ -64,7 +65,7 @@ function ShowDetails() {
 
   return (
     <div className="show-details-container">
-      {state.generateShow && selectedGenres !== ""? (
+      {state.generateShow && selectedGenres !== "" ? (
         <div className="show-details-redo-icon" onClick={handleRegenerateShow}>
           <RedoIcon />
           <p>Regenerate Show</p>
@@ -89,8 +90,24 @@ function ShowDetails() {
             )}
             <div className="show-details-text">
               <div className="show-details-name">{currentShowData.name}</div>
-              <div className="show-details-status">
-                {currentShowData.status}
+              <div className="show-details-visuals">
+                <div className="show-details-status">
+                  {currentShowData.status}
+                </div>
+                <div className="show-details-rating-icon">
+                  <RatingIcon />
+                </div>
+                <div className="show-details-rating">
+                  {currentShowData.vote_average
+                    ? currentShowData.vote_average.toFixed(1)
+                    : ""}
+                  /10
+                </div>
+                <img
+                  className="show-details-network-logo"
+                  src={`https://image.tmdb.org/t/p/w500${currentShowData.networks[currentShowData.networks.length - 1].logo_path}`}
+                  alt={currentShowData.networks[currentShowData.networks.length - 1].name}
+                ></img>
               </div>
               <div className="show-details-overview">
                 {currentShowData.overview}
