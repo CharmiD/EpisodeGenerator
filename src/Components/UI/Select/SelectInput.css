@@ -3,27 +3,57 @@
     margin-bottom: auto;
 }
 
-#season-select {
-    border-radius: 15px;
-    border: 2px solid #8E6EB5;
-    background: transparent;
-    outline: none;
-    color: #FFF;
-    font-family: Helvetica;
-    font-size: 16px;
-    cursor: pointer;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 15px;
-    padding-right: 40px;
+.css-13cymwt-control, .css-t3ipsp-control {
+    background-color: transparent !important;
+    border-radius: 15px !important;
+    border: 2px solid #8E6EB5 !important;
+    min-height: 20px !important;
+    height: 32px !important;
+    box-shadow: none !important;
+    width: 170px;
 }
 
-select {
-    -webkit-appearance: none;
-    appearance: none;
+.css-1jqq78o-placeholder, .css-1dimb5e-singleValue {
+    color: #FFF !important;
+    text-align: center !important;
+    font-family: Helvetica !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    padding-bottom: 5px;
+}
 
-    background-image: url("/src/Assets/Dropdown\ Icon.svg") !important;
-    background-size: 14px !important;
-    background-repeat: no-repeat !important;
-    background-position: calc(100% - 8px) center !important;
+.css-1xc3v61-indicatorContainer, .css-15lsz6c-indicatorContainer {
+    padding-top: 5px !important;
+
+    svg {
+        color: white;
+    }
+}
+
+.css-1u9des2-indicatorSeparator {
+    display: none !important;
+}
+
+.css-14h4o58-menu {
+    background-color: #1E2129 !important;
+    border-radius: 15px !important;
+    border: 2px solid #8E6EB5 !important;
+}
+
+.css-10wo9uf-option {
+    color: #FFF !important;
+    text-align: center !important;
+    font-family: Helvetica !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+}
+
+.css-d7l1ni-option, .css-tr4s17-option {
+    background-color: #8E6EB5 !important;
+    border-radius: 5px;
+    color: #FFF !important;
+    text-align: center !important;
+    font-family: Helvetica !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
 }

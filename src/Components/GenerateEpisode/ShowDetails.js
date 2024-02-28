@@ -39,7 +39,7 @@ function ShowDetails() {
     if (selectedSeason === "") {
       setShowError(true);
     } else {
-      navigate("/episode/" + currentShowId + "/" + selectedSeason);
+      navigate("/episode/" + currentShowId + "/" + selectedSeason.value);
     }
   };
 
