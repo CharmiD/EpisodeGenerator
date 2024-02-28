@@ -6,6 +6,7 @@ import "./EpisodeDetails.css";
 import ApiManager from "../../ApiManager/ApiManager";
 import Button from "../UI/Button/Button";
 import RatingIcon from "../../Assets/RatingIcon";
+import RedoIcon from "../../Assets/RedoIcon";
 
 function EpisodeDetails() {
   const currentShowId = useParams().showId;
@@ -52,6 +53,18 @@ function EpisodeDetails() {
 
   return (
     <div className="episode-details-container">
+      <div
+        className="episode-details-redo-icon"
+        onClick={() => {
+          const seasonsData = currentShowData.seasons.filter(function (x) {
+            return x.season_number !== 0;
+          });
+          generateRandomEpisode(seasonsData);
+        }}
+      >
+        <RedoIcon />
+        <p>Regenerate Episode</p>
+      </div>
       {randomEpisode ? (
         <>
           <div className="episode-details">
@@ -109,17 +122,6 @@ function EpisodeDetails() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="generate-again-container">
-            <Button
-              handleClick={() => {
-                const seasonsData = currentShowData.seasons.filter(function (x) {
-                  return x.season_number !== 0;
-                });
-                generateRandomEpisode(seasonsData);
-              }}
-              text="Generate Again"
-            ></Button>
           </div>
         </>
       ) : (

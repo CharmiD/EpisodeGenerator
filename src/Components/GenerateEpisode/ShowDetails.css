@@ -1,5 +1,5 @@
 .show-details-container {
-    margin-top: 50px;
+    margin-top: 40px;
     flex: 1;
     justify-content: center;
     display: flex;
@@ -8,7 +8,8 @@
 
 .show-details-redo-icon{
     display: flex;
-    margin-left: 40px;
+    margin-right: 40px;
+    margin-left: auto;
     cursor: pointer;
 
     p {
