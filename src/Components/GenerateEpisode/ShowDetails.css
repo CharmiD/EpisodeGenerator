@@ -81,7 +81,7 @@
 
 .show-details-visuals {
     display: flex;
-    margin-bottom: 20px;
+    margin: 20px 0px;
 }
 
 .show-details-status {
