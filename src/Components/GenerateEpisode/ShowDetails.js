@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import StarRatings from "react-star-ratings";
 
 import "./ShowDetails.css";
 
@@ -97,14 +98,21 @@ function ShowDetails() {
                 <div className="show-details-status">
                   {currentShowData.status}
                 </div>
-                <div className="show-details-rating-icon">
-                  <RatingIcon />
-                </div>
+                <StarRatings
+                  rating={
+                    currentShowData.vote_average
+                      ? (currentShowData.vote_average/2)
+                      : 0
+                  }
+                  starDimension="25px"
+                  starSpacing="2px"
+                  starRatedColor="#8E6EB5"
+                  starEmptyColor="white"
+                />
                 <div className="show-details-rating">
                   {currentShowData.vote_average
-                    ? currentShowData.vote_average.toFixed(1)
-                    : ""}
-                  /10
+                    ? (currentShowData.vote_average/2).toFixed(1)
+                    : 0}
                 </div>
                 <img
                   className="show-details-network-logo"
