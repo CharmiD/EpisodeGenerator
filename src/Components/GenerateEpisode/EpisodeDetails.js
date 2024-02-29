@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import StarRatings from "react-star-ratings";
 
 import "./EpisodeDetails.css";
 
@@ -87,14 +88,21 @@ function EpisodeDetails() {
                 {currentShowData.name}
               </div>
               <div className="episode-details-rating-section">
-                <div className="episode-details-rating-icon">
-                  <RatingIcon />
-                </div>
+                <StarRatings
+                  rating={
+                    randomEpisode.vote_average
+                      ? (randomEpisode.vote_average/2)
+                      : 0
+                  }
+                  starDimension="25px"
+                  starSpacing="2px"
+                  starRatedColor="#8E6EB5"
+                  starEmptyColor="white"
+                />
                 <div className="episode-details-rating">
                   {randomEpisode.vote_average
-                    ? randomEpisode.vote_average.toFixed(1)
-                    : ""}
-                  /10
+                    ? (randomEpisode.vote_average/2).toFixed(1)
+                    : 0}
                 </div>
               </div>
               <div className="episdoe-details-overview">
