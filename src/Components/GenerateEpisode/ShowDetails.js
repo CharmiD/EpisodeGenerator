@@ -90,7 +90,9 @@ function ShowDetails() {
                   <p>No Image Available</p>
                 </div>
               )}
-              <div className="show-deatils-tagline">{currentShowData.tagline}</div>
+              <div className="show-deatils-tagline">
+                {currentShowData.tagline}
+              </div>
             </div>
             <div className="show-details-text">
               <div className="show-details-name">{currentShowData.name}</div>
@@ -101,7 +103,7 @@ function ShowDetails() {
                 <StarRatings
                   rating={
                     currentShowData.vote_average
-                      ? (currentShowData.vote_average/2)
+                      ? currentShowData.vote_average / 2
                       : 0
                   }
                   starDimension="25px"
@@ -111,22 +113,26 @@ function ShowDetails() {
                 />
                 <div className="show-details-rating">
                   {currentShowData.vote_average
-                    ? (currentShowData.vote_average/2).toFixed(1)
+                    ? (currentShowData.vote_average / 2).toFixed(1)
                     : 0}
                 </div>
-                <img
-                  className="show-details-network-logo"
-                  src={`https://image.tmdb.org/t/p/w500${
-                    currentShowData.networks[
-                      currentShowData.networks.length - 1
-                    ].logo_path
-                  }`}
-                  alt={
-                    currentShowData.networks[
-                      currentShowData.networks.length - 1
-                    ].name
-                  }
-                ></img>
+                {currentShowData.networks.length !== 0 ? (
+                  <img
+                    className="show-details-network-logo"
+                    src={`https://image.tmdb.org/t/p/w500${
+                      currentShowData.networks[
+                        currentShowData.networks.length - 1
+                      ].logo_path
+                    }`}
+                    alt={
+                      currentShowData.networks[
+                        currentShowData.networks.length - 1
+                      ].name
+                    }
+                  ></img>
+                ) : (
+                  <></>
+                )}
               </div>
               <div className="show-details-overview">
                 {currentShowData.overview}
