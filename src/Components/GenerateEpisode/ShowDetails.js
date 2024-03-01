@@ -120,9 +120,7 @@ function ShowDetails() {
                   <img
                     className="show-details-network-logo"
                     src={`https://image.tmdb.org/t/p/w500${
-                      currentShowData.networks[
-                        currentShowData.networks.length - 1
-                      ].logo_path
+                      currentShowData.networks[0].logo_path
                     }`}
                     alt={
                       currentShowData.networks[
