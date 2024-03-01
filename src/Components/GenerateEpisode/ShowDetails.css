@@ -82,6 +82,10 @@
 .show-details-visuals {
     display: flex;
     margin: 20px 0px;
+
+    .star-ratings{
+        margin-left: 25px;
+    }
 }
 
 .show-details-status {
@@ -89,10 +93,6 @@
     border-radius: 15px;
     border: 1px solid #FFF;
     width: fit-content;
-}
-
-.star-ratings{
-    margin-left: 25px;
 }
 
 .show-details-rating {
